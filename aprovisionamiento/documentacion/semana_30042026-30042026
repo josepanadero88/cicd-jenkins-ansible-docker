@@ -1,0 +1,28 @@
+=========================================
+INFORME SEMANAL DE PROYECTO - SISTEMA DE DESPLIEGUES
+José Alfonso Panadero Estudillo.
+Periodo: 30/04/2026 al 30/04/2026
+========================================
+
+
+Diseño Arquitectura: Se ha definido la estructura indicada en el .pdf de instrucciones:
+proyecto-despliegues/
+├── aprovisionamiento
+│   ├── ansible
+│   │   └── playbook.yml
+│   ├── docker
+│   │   ├── docker-compose.yml
+│   │   └── DockerFile
+│   ├── documentacion
+│   │   └── semana_30042026-30042026
+│   └── Jenkinsfile
+└── web
+    └── index.html
+
+Configuracion Docker: Se ha redactado Dockerfile basado en Debian13, se ha definido docker-compose.yml para orquestar containers y cliente.
+
+Automatización Ansible: Se ha creado playbook para automatizar instalacion Apache2, reconfigurar puertos (:8083) y despliegue en rama "testing".
+
+Pipeline: Se implementa el archivo Jenkinsfile que define las etapas y pruebas automaticas.
+
+

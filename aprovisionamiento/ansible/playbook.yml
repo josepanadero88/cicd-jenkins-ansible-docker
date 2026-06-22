@@ -1,0 +1,50 @@
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: 1. Instalar Apache2.
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+
+    - name: 2. Cambiar puerto de Apache al 8083
+      lineinfile:
+        path: /etc/apache2/ports.conf
+        regexp: "^Listen 80"
+        line: "Listen 8083"
+
+    - name: 3. Configurar VirtualHost para puerto 8083
+      replace:
+        path: /etc/apache2/sites-available/000-default.conf
+        regexp: '<VirtualHost \*:80>'
+        replace: '<VirtualHost *:8083>'
+
+    - name: 5.1 Limpiar Index de Apache
+      file:
+        path: /var/www/html/index.html
+        state: absent
+
+    - name: 5.2 Descargar la web desde GitLab (rama testing)
+      git:
+        repo: 'git@gitlab.vms.andared.ced.junta-andalucia.es:japanadero/web.git'
+        dest: /var/www/html/
+        version: testing
+        force: yes
+        accept_hostkey: yes
+      environment:
+        GIT_SSL_NO_VERIFY: "true"
+#GIT_SSL_NO_VERIFY saltar validacion SSL.
+#force errores sobreescritura Git - Local
+
+
+    - name: 5. Insertar el numero de build version (1, 2, 3..)
+      replace:
+        path: /var/www/html/index.html
+        regexp: '\$\{BUILD_NUMBER\}'
+        replace: "{{ build_id }}"
+
+
+    - name: 6. Reiniciar Apache
+      service:
+        name: apache2
+        state: reloaded

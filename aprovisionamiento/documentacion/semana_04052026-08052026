@@ -1,0 +1,63 @@
+=========================================
+INFORME SEMANAL DE PROYECTO - SISTEMA DE DESPLIEGUES
+José Alfonso Panadero Estudillo.
+Periodo: 04/05/2026 al 08/05/2026
+========================================
+
+1. Configuración de Repositorio y Entorno.
+
+- Creación de Proyectos en GitLab: Se estructura repositorios aprovisionamiento y
+web con sus respectivas ramas.
+
+- Dockerización: Se diseña entorno con 2 contenedores (web-preproducción y
+cliente) basados en Debian13, conectados en la misma red-proyecto
+
+- Integración Jenkins-Docker: Se configura Jenkinsfile para que Jenkins levante
+ambos contenedores automáticamente usando docker-compose en la etapa
+Building.
+
+2. Automatización con Ansible.
+
+- Despliegue Dinámico: Se crea Playbook de Ansible para instalar Apache2 y clonar
+rama testing del repositorio web directamente en el contenedor.
+
+- Personalización: Se implementa una tarea en Ansible para inyectar el build_id de
+jenkins y mi nombre en el index.html.
+
+- Configuración de Red: Se ajusta el puerto de escucha al 8083.
+
+3. Fase de Calidad y Testing.
+
+- Pruebas con Pytest: Se crea un archivo test_web.py.py en el contenedor cliente
+para realizar peticiones al contenedor web-preproducción.
+
+- Validación de Contenido: El test verifica que la web responda (código 200) y busca
+cadenas de texto (mi nombre) para asegurar el despliegue.
+
+- Reportes JUnit: Se configura la salida de las pruebas en formato XML para que
+Jenkins pueda graficar los resultados.
+
+4. Merge automático.
+- Seguridad en ramas: Se establece que nadie trabaje en master, todo el desarrollo
+se realiza en testing.
+
+- Merge cuando éxito: Se configura el bloque post success en Pipeline para que tras
+pasar los test, Jenkins realice el merge de testing a master y lo suba al repositorio.
+
+=== Problemas Encontrados ===
+
+Han surgido más problemas dado prueba y error dada la falta de costumbre/práctica
+con algunas de las herramientas, en especial Jenkins.
+Podríamos recalcar:
+
+- Error de credenciales: El comando sshagent falló porque el ID de la credencial
+Jenkinsfile no coincida exactamente con el configurado en jenkins ( usuario a
+ClaveJenkinsCICDusuario a ClaveJenkinsCICD que es el que constaba en el archivo
+y en jenkins)
+
+- Resolución de nombres: Hubo problemas de conectividad entre contenedores
+hasta que ambos fueron designados a la misma red Docker.
+
+- Ausencia de Plugins: La configuración de Jenkins inicial, así como el Pipeline
+fallaron en un punto porque faltaban Plugins, tales como SSH Agent, Pipeline, Git
+entre otros.

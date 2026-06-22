@@ -1,0 +1,25 @@
+version: '3'
+services:
+  web-preproduccion:
+    build: .
+    container_name: web-preproduccion
+    ports:
+      - "8083:8083"
+    volumes:
+      - ../ansible:/ansible
+      - /home/usuario/.ssh:/root/.ssh:ro
+    networks:
+      - red_proyecto
+
+  cliente:
+    build: .
+    container_name: cliente
+    volumes:
+      - ../ansible:/ansible
+      - /home/usuario/.ssh:/root/.ssh:ro
+    networks:
+      - red_proyecto
+
+networks:
+  red_proyecto:
+    driver: bridge
