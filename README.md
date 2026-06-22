@@ -41,5 +41,5 @@ Si deseas probar el despliegue manual o la configuración de los contenedores si
 
 1. **Clonar el repositorio:**
 ```bash
-   git clone [https://github.com/TU_USUARIO/cicd-jenkins-ansible-docker.git](https://github.com/TU_USUARIO/cicd-jenkins-ansible-docker.git)
-   cd cicd-jenkins-ansible-docker
+git clone [https://github.com/josepanadero88/cicd-jenkins-ansible-docker.git](https://github.com/josepanadero88/cicd-jenkins-ansible-docker.git)
+cd cicd-jenkins-ansible-docker
