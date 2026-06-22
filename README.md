@@ -13,7 +13,7 @@ El ciclo de vida del desarrollo sigue el siguiente flujo automatizado:
 4. **Fase de Aprovisionamiento (Ansible):** Si los tests pasan con éxito, Ansible gestiona la configuración de los entornos, asegurando la idempotencia del sistema.
 5. **Despliegue y Aislamiento (Docker):** La aplicación se empaqueta y se despliega utilizando Docker y Docker-Compose, levantando los servicios necesarios en contenedores independientes (ej. Pre-producción y Cliente).
 
-![Arquitectura y Flujo del Pipeline]
+![Arquitectura y Flujo del Pipeline](Pipeline-Architecture.jpg)
 
 ## 🛠️ Tecnologías Utilizadas
 
