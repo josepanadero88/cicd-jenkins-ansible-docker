@@ -1,4 +1,3 @@
-# cicd-jenkins-ansible-docker
 # Pipeline CI/CD Automatizado con Jenkins, Ansible y Docker
 
 Este proyecto implementa un flujo completo de Integración y Despliegue Continuo (CI/CD) para una aplicación web. Automatiza desde la gestión del código fuente y la ejecución de pruebas unitarias hasta el aprovisionamiento de la infraestructura y el despliegue en entornos aislados de contenedores.
@@ -13,7 +12,7 @@ El ciclo de vida del desarrollo sigue el siguiente flujo automatizado:
 4. **Fase de Aprovisionamiento (Ansible):** Si los tests pasan con éxito, Ansible gestiona la configuración de los entornos, asegurando la idempotencia del sistema.
 5. **Despliegue y Aislamiento (Docker):** La aplicación se empaqueta y se despliega utilizando Docker y Docker-Compose, levantando los servicios necesarios en contenedores independientes (ej. Pre-producción y Cliente).
 
-![Arquitectura y Flujo del Pipeline](Pipeline-Architecture.jpg)
+![Arquitectura y Flujo del Pipeline](Pipeline-Architecture)
 
 ## 🛠️ Tecnologías Utilizadas
 
